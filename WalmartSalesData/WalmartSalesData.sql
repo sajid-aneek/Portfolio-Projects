@@ -90,3 +90,40 @@ From WalmartSalesData
 Group by month_name
 order by largest_COGS DESC
 
+-- What product line had the largest revenue? 
+Select product_line, SUM(Total) revenue
+From WalmartSalesData
+Group By product_line
+Order by revenue DESC
+
+-- What is the city with the largest revenue?
+Select City, SUM(Total) revenue
+From WalmartSalesData
+Group By City
+Order by revenue DESC
+
+-- What product line had the largest VAT?
+Select * From WalmartSalesData
+
+SELECT
+	product_line,
+	AVG(tax_5) as avg_tax
+FROM WalmartSalesData
+GROUP BY product_line
+ORDER BY avg_tax DESC;
+
+-- Fetch each product line and add a column to those product line showing "Good", "Bad". Good if its greater than average sales
+Select * From WalmartSalesData
+
+Alter table WalmartSalesData ADD remarks VARCHAR(20)
+
+Select AVG(Quantity) AS avg_quantity
+From WalmartSalesData
+
+Select Product_line,
+CASE
+When  avg(quantity) > 6 THEN 'Good'
+Else 'Bad'
+END AS remarks
+From WalmartSalesData
+Group by Product_line
